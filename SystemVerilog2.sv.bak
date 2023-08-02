@@ -1,0 +1,49 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    17:50:11 06/26/2020 
+// Design Name: 
+// Module Name:    test_4x4 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module test_8x8;
+  reg [7:0] a,b,c,d;
+  reg cin;
+  wire cout;
+  wire [15:0] result0, result1, sum;
+  
+
+  vedic8x8 Vedic0(a, b, result0); 
+  vedic8x8 Vedic1(c, d, result1); 
+  Add4bits TestFA (result0, result1, cin, cout, sum);
+
+initial begin
+    #10 a= 8'b00000011; b= 8'b00000011; cin=1'b0;
+  	#10 c= 8'b00000011; d= 8'b00000011; cin=1'b0;
+    //#20 a= 8'b00110000; b= 8'b00100011;
+    //#20 a= 8'b00100000; b= 8'b00100101;
+    //#20 a= 8'b00000001; b= 8'b00000001;
+    //#20 a= 8'b00010011; b= 8'b01110011;
+    //#50 $finish; 
+    $dumpfile("dump.vcd");
+    $dumpvars(0);
+    $finish;
+end
+
+//always #5 clk = ~clk  ; 
+
+endmodule
